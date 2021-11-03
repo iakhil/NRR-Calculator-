@@ -23,19 +23,19 @@ def show_ques():
     return render_template('index.html')
 
 
-@app.route('/afg',methods=['POST'])
-def afg():
+@app.route('/nz',methods=['POST'])
+def nz():
         
-    runs_scored = [151, 110]
-    runs_given = [152, 111]
-    overs_played = [20, 20]
-    overs_bowled = [17.83, 14.5]
+    runs_scored = [134, 111, 172]
+    runs_given = [135, 110, 156]
+    overs_played = [20, 14.6, 20]
+    overs_bowled = [18.67, 20, 20]
 
 
-    afg_runs_scored = [190, 147, 160]
-    afg_runs_given = [60, 148, 98] 
-    afg_overs_bowled = [20, 19, 20]
-    afg_overs_played = [20, 20, 20]
+    afg_runs_scored = [190, 147, 160, 144]
+    afg_runs_given = [60, 148, 98, 210] 
+    afg_overs_bowled = [20, 19, 20, 20]
+    afg_overs_played = [20, 20, 20, 20]
     cur_a_nrr = (sum(afg_runs_scored) / sum(afg_overs_played)) - (sum(afg_runs_given) / sum(afg_overs_bowled))
     print("Afg NRR: ", cur_a_nrr)
     input_data = [float(x) for x in request.form.values()]
@@ -65,7 +65,7 @@ def afg():
     afg_nrr = afg_nrr_for - afg_nrr_aga
 
     print("Afghanistan NRR: ", afg_nrr) 
-    return render_template('index.html', afg_nrr=afg_nrr, ind_nrr=nrr)
+    return render_template('index.html', ind_nrr=nrr)
     #return render_template('index.html', afg_nrr='{}'.format(afg_nrr), ind_nrr='{}'.format(nrr))
 
     
