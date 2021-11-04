@@ -1,52 +1,42 @@
 <!DOCTYPE html>
 <html>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
  <div class="login">
 	<h1>NRR Calculator</h1>
-  <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-left: 32%; font-size: 25px; color: yellow;">If a team is all out, enter the number of overs faced by that team as 20.</p>
+  <!-- <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-left: 32%; font-size: 25px; color: yellow;">If a team is all out, enter the number of overs faced by that team as 20.</p>  -->
 
+  <h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-left: 32%; font-size: 25px; color: yellow;"> Calculate NRR of Teams of Pool 2 in the ICC Men's T20 World Cup 2021</h2>
 
-     <!-- Main Input For Receiving Query to our ML -->
+<ul>
 
-
-    <form style="margin-left: 34%;" action="{{ url_for('nz')}}"method="post">
-       
-    <input type="text" name="afg runs" placeholder="Runs scored by Namibia"  required="required"/>
-    <input type="text" name="bowled afg" placeholder="Overs faced by Namibia" required="required"/>
-    <input type="text" name="ind runs" placeholder="Runs scored by NZ" required="required"/>
-    <input type="text" name="bowled ind" placeholder="Overs faced by NZ" required="required"/>
-
-     <!--<input type="text"  class="input-text"  name="passage" placeholder="Passage" required="required" /> -->
-        <button type="submit">Submit</button>
+    <li style="margin-left: 40px;"><a class="active" href="/">Home</a></li>
+    <li style="margin-left: 410px;"><a href="/india">IND</a></li>
+    <li style="margin-left: 430px;"><a href="/afghanistan">AFG</a></li>
+    <li style="margin-left: 510px;"><a href="/newzealand">NZ</a></li>
     
-    </form>
+</ul>
 
-   <br>
-   <br>
-   
+     
+ <h2 style="font-size: 45px; margin-left: 41%; font-family: Arial, Helvetica, sans-serif; color: white;">
+  How is NRR Calculated?
+</h2>
 
-   <div style="margin-left: 650px; color: black; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 35px;">
-    <pre>
-      <h3 style="font-family: Arial, Helvetica, sans-serif; color: yellow;">New Zealand's NRR</h3>
-    {{ ind_nrr }}
-    </pre>
-   </div>
-   
-   <div style="margin-left: 650px; color: white; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 35px;">
-    <pre>
-      <!-- <h3 style="font-family: Arial, Helvetica, sans-serif; color: yellow;">Afghanistan's NRR</h3> -->
-    {{afg_nrr}}
-    </pre>
-   </div>
+<p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-left: 32%; font-size: 25px; color: yellow;">
+  NRR = (Total Runs Scored / Overs Faced) - (Total Runs Given / Overs Bowled)
+</p>
+<br>
+<p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-left: 12%; font-size: 25px; color: white;">
+  If a team is bowled out, then the number of overs faced by that team is taken as the maximum number of overs to be bowled. 
+</p>
 
- 
 
 
 </body>
 
-
+<footer style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-top: 20%; margin-left: 82%; font-size: 25px; color: yellow;">Created by: <a style="text-decoration: none" href="https://twitter.com/IAkhil3" class="fa fa-twitter"></a> IAkhil3</footer>
 
 </html>

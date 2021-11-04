@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+ <div class="login">
+	<h1>NRR Calculator</h1>
+  <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-left: 32%; font-size: 25px; color: yellow;">If a team is all out, enter the number of overs faced by that team as 20.</p>
+
+  <ul>
+
+    <li style="margin-left: 40px;"><a class="active" href="/">Home</a></li>
+    <li style="margin-left: 410px;"><a href="/india">IND</a></li>
+    <li style="margin-left: 430px;"><a href="/afghanistan">AFG</a></li>
+    <li style="margin-left: 510px;"><a href="/newzealand">NZ</a></li>
+    
+</ul>
+
+     <!-- Main Input For Receiving Query to our ML -->
+
+     
+    <form style="margin-left: 34%; margin-top: 8%" action="{{ url_for('afghanistan')}}"method="post">
+     
+    <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-left: 33%; color: white">vs New Zealand </h3>
+    
+        
+    <input type="text" name="afg runs" placeholder="Runs scored by AFG"  required="required"/>
+    <input type="text" name="bowled afg" placeholder="Overs faced by AFG" required="required"/>
+    <input type="text" name="ind runs" placeholder="Runs scored by NZ" required="required"/>
+    <input type="text" name="bowled ind" placeholder="Overs faced by NZ" required="required"/>
+
+     <!--<input type="text"  class="input-text"  name="passage" placeholder="Passage" required="required" /> -->
+        <button type="submit">Submit</button>
+    
+    </form>
+
+   <br>
+   <br>
+   
+
+   <div style="margin-left: 650px; color: black; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 35px;">
+    <pre>
+      <h3 style="font-family: Arial, Helvetica, sans-serif; color: yellow;">Afghanistan's NRR</h3> 
+    {{ afg_nrr }}
+    </pre>
+   </div>
+   
+   
+
+ 
+
+
+</body>
+
+
+
+</html>

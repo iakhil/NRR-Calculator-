@@ -3,6 +3,16 @@ from flask import Flask, request, jsonify, render_template
 import pickle
 
 app = Flask(__name__)
+class NRR:
+    
+    def __init__ (self, runs_scored, overs_faced, runs_given, overs_bowled): 
+        self.runs_scored = runs_scored 
+        self.overs_faced = overs_faced
+        self.runs_given = runs_given 
+        self.overs_bowled = overs_bowled
+
+
+
 
 
 def convert(ele):
@@ -17,57 +27,128 @@ def convert(ele):
 def home():
     return render_template('index.html')
 
-@app.route('/afg')
+@app.route('/afghanistan')
 def show_ques():
     
-    return render_template('index.html')
+    return render_template('afg.html')
+
+@app.route('/newzealand')
+def show_nz():
+    
+    return render_template('nz.html')
 
 
-@app.route('/nz',methods=['POST'])
-def nz():
-        
-    runs_scored = [134, 111, 172]
-    runs_given = [135, 110, 156]
-    overs_played = [20, 14.6, 20]
-    overs_bowled = [18.67, 20, 20]
+@app.route('/india')
+def show_ind():
+    
+    return render_template('ind.html')
 
 
-    afg_runs_scored = [190, 147, 160, 144]
-    afg_runs_given = [60, 148, 98, 210] 
-    afg_overs_bowled = [20, 19, 20, 20]
-    afg_overs_played = [20, 20, 20, 20]
-    cur_a_nrr = (sum(afg_runs_scored) / sum(afg_overs_played)) - (sum(afg_runs_given) / sum(afg_overs_bowled))
-    print("Afg NRR: ", cur_a_nrr)
+
+
+@app.route('/afghanistan',methods=['POST'])
+def afghanistan():
+    ind = NRR([151, 110, 210], [20, 20, 20], [152, 111, 144], [17.83, 14.5, 20])
+    afg = NRR([190, 147, 160, 144], [20, 20, 20, 20], [60, 148, 98, 210], [20, 19, 20, 20])
+    nz = NRR([134, 111, 172], [20, 14.5, 20], [135, 110, 156], [18.67, 20, 20])
+
     input_data = [float(x) for x in request.form.values()]
     print(input_data)
     input_data[1] = convert(input_data[1])  
-    afg_runs_scored.append(input_data[0])
-    runs_given.append(input_data[0])
-    afg_overs_played.append(input_data[1])
-    overs_bowled.append(input_data[1])
-    runs_scored.append(input_data[2])
-    afg_runs_given.append(input_data[2])
+    afg.runs_scored.append(input_data[0])
+    nz.runs_given.append(input_data[0])
+    afg.overs_faced.append(input_data[1])
+    nz.overs_bowled.append(input_data[1])
+    nz.runs_scored.append(input_data[2])
+    afg.runs_given.append(input_data[2])
     input_data[3] = convert(input_data[3])
-    overs_played.append(input_data[3])
-    afg_overs_bowled.append(input_data[3])
+    nz.overs_faced.append(input_data[3])
+    afg.overs_bowled.append(input_data[3])
  
     # final_features = [np.array(int_features)]
-    nrr_for = sum(runs_scored) / sum(overs_played)
-    nrr_aga = sum(runs_given) / sum(overs_bowled) 
-    nrr = nrr_for - nrr_aga 
+    nz_for = sum(nz.runs_scored) / sum(nz.overs_faced)
+    nz_aga = sum(nz.runs_given) / sum(nz.overs_bowled) 
+    nz_nrr = nz_for - nz_aga 
     #print("India NRR: ",  nrr) 
 
     #print(afg_runs_scored[0:3])
-    afg_nrr_for = sum(afg_runs_scored) / sum(afg_overs_played) 
+    afg_for = sum(afg.runs_scored) / sum(afg.overs_faced) 
 
-    afg_nrr_aga = sum(afg_runs_given) / sum(afg_overs_bowled)
+    afg_aga = sum(afg.runs_given) / sum(afg.overs_bowled)
 
-    afg_nrr = afg_nrr_for - afg_nrr_aga
+    afg_nrr = afg_for - afg_aga
 
     print("Afghanistan NRR: ", afg_nrr) 
-    return render_template('index.html', ind_nrr=nrr)
+    return render_template('afg.html', nz_nrr=nz_nrr, afg_nrr=afg_nrr)
     #return render_template('index.html', afg_nrr='{}'.format(afg_nrr), ind_nrr='{}'.format(nrr))
 
+@app.route('/newzealand',methods=['POST'])
+def newzealand():
+    ind = NRR([151, 110, 210], [20, 20, 20], [152, 111, 144], [17.83, 14.5, 20])
+    afg = NRR([190, 147, 160, 144], [20, 20, 20, 20], [60, 148, 98, 210], [20, 19, 20, 20])
+    nz = NRR([134, 111, 172], [20, 14.5, 20], [135, 110, 156], [18.67, 20, 20])
+    input_data = [float(x) for x in request.form.values()]
+    print(input_data)
+    input_data[1] = convert(input_data[1])  
+    nz.runs_scored.append(input_data[0])
+    nz.overs_faced.append(input_data[1])
+    nz.runs_given.append(input_data[2])
+    input_data[3] = convert(input_data[3])
+    nz.overs_bowled.append(input_data[3])
     
+    input_data[5] = convert(input_data[5])
+    input_data[7] = convert(input_data[7])
+    
+    nz.runs_scored.append(input_data[4])
+    nz.overs_faced.append(input_data[5])
+    nz.runs_given.append(input_data[6])
+    nz.overs_bowled.append(input_data[7])
+
+    nz_for = sum(nz.runs_scored) / sum(nz.overs_faced) 
+    nz_aga = sum(nz.runs_given) / sum(nz.overs_bowled)
+
+    nz_nrr = nz_for - nz_aga
+
+    return render_template('nz.html', nz_nrr=nz_nrr)
+
+
+@app.route('/india',methods=['POST'])
+def india():
+    ind = NRR([151, 110, 210], [20, 20, 20], [152, 111, 144], [17.83, 14.5, 20])
+    afg = NRR([190, 147, 160, 144], [20, 20, 20, 20], [60, 148, 98, 210], [20, 19, 20, 20])
+    nz = NRR([134, 111, 172], [20, 14.5, 20], [135, 110, 156], [18.67, 20, 20])
+    input_data = [float(x) for x in request.form.values()]
+    input_data[1] = convert(input_data[1])  
+    ind.runs_scored.append(input_data[0])
+    ind.overs_faced.append(input_data[1])
+    ind.runs_given.append(input_data[2])
+    input_data[3] = convert(input_data[3])
+    ind.overs_bowled.append(input_data[3])
+    
+    input_data[5] = convert(input_data[5])
+    input_data[7] = convert(input_data[7])
+    
+    ind.runs_scored.append(input_data[4])
+    ind.overs_faced.append(input_data[5])
+    ind.runs_given.append(input_data[6])
+    ind.overs_bowled.append(input_data[7])
+
+    ind_for = sum(nz.runs_scored) / sum(nz.overs_faced) 
+    ind_aga = sum(nz.runs_given) / sum(nz.overs_bowled)
+
+    ind_nrr = ind_for - ind_aga
+
+    return render_template('ind.html', ind_nrr=ind_nrr)
+
+
+
+
+
+
+
+
+
+
+
 if __name__ == "__main__":
     app.run(debug=False)
