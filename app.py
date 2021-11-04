@@ -133,8 +133,8 @@ def india():
     ind.runs_given.append(input_data[6])
     ind.overs_bowled.append(input_data[7])
 
-    ind_for = sum(nz.runs_scored) / sum(nz.overs_faced) 
-    ind_aga = sum(nz.runs_given) / sum(nz.overs_bowled)
+    ind_for = sum(ind.runs_scored) / sum(ind.overs_faced) 
+    ind_aga = sum(ind.runs_given) / sum(ind.overs_bowled)
 
     ind_nrr = ind_for - ind_aga
 
