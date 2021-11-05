@@ -86,7 +86,7 @@ def afghanistan():
 def newzealand():
     ind = NRR([151, 110, 210], [20, 20, 20], [152, 111, 144], [17.83, 14.5, 20])
     afg = NRR([190, 147, 160, 144], [20, 20, 20, 20], [60, 148, 98, 210], [20, 19, 20, 20])
-    nz = NRR([134, 111, 172], [20, 14.5, 20], [135, 110, 156], [18.67, 20, 20])
+    nz = NRR([134, 111, 172, 163], [20, 14.5, 20, 20], [135, 110, 156, 111], [18.67, 20, 20, 20])
     input_data = [float(x) for x in request.form.values()]
     print(input_data)
     input_data[1] = convert(input_data[1])  
@@ -96,13 +96,7 @@ def newzealand():
     input_data[3] = convert(input_data[3])
     nz.overs_bowled.append(input_data[3])
     
-    input_data[5] = convert(input_data[5])
-    input_data[7] = convert(input_data[7])
-    
-    nz.runs_scored.append(input_data[4])
-    nz.overs_faced.append(input_data[5])
-    nz.runs_given.append(input_data[6])
-    nz.overs_bowled.append(input_data[7])
+
 
     nz_for = sum(nz.runs_scored) / sum(nz.overs_faced) 
     nz_aga = sum(nz.runs_given) / sum(nz.overs_bowled)
