@@ -167,7 +167,7 @@ def southafrica():
 @app.route('/australia',methods=['POST'])
 def australia():
    
-    aus = NRR([121, 155, 125, 78, 125], [19.67, 17, 20, 6.34, 20], [118, 154, 126, 73, 210], [20, 20, 11.67, 20, 20])
+    aus = NRR([121, 155, 125, 78], [19.67, 17, 20, 6.34], [118, 154, 126, 73], [20, 20, 11.67, 20])
     input_data = [float(x) for x in request.form.values()]
     input_data[1] = convert(input_data[1])  
     aus.runs_scored.append(input_data[0])
