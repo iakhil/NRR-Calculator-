@@ -21,21 +21,17 @@
 
      <!-- Main Input For Receiving Query to our ML -->
 
-
-    <form style="margin-left: 34%; margin-top: 8%" action="{{ url_for('newzealand')}}"method="post">
+     
+    <form style="margin-left: 34%; margin-top: 8%" action="{{ url_for('australia')}}"method="post">
+     
+    <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-left: 33%; color: white">vs West Indies </h3>
     
-   
 
-      <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-left: 33%; color: white">vs Afghanistan</h3>
+    <input type="text" name="afg runs" placeholder="Runs scored by AUS"  required="required"/>
+    <input type="text" name="bowled afg" placeholder="Overs faced by AUS" required="required"/>
+    <input type="text" name="ind runs" placeholder="Runs scored by WI" required="required"/>
+    <input type="text" name="bowled ind" placeholder="Overs faced by WI" required="required"/>
 
-
-    <input type="text" name="nz runs nam" placeholder="Runs scored by NZ"  required="required"/>
-    <input type="text" name="nz faced" placeholder="Overs faced by NZ" required="required"/>
-    <input type="text" name="afg runs nz" placeholder="Runs scored by AFG" required="required"/>
-    <input type="text" name="afg overs nz" placeholder="Overs faced by AFG" required="required"/>
-    
-          
-      
      <!--<input type="text"  class="input-text"  name="passage" placeholder="Passage" required="required" /> -->
         <button type="submit">Submit</button>
     
@@ -44,13 +40,15 @@
    <br>
    <br>
    
-   
-   <div style="margin-left: 650px; color: white; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 35px;">
+
+   <div style="margin-left: 650px; color: black; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 35px;">
     <pre>
-      <h3 style="font-family: Arial, Helvetica, sans-serif; color: yellow;">New Zealand's NRR</h3>
-    {{nz_nrr}}
+      <h3 style="font-family: Arial, Helvetica, sans-serif; color: yellow;">Australia's NRR</h3> 
+    {{ aus_nrr }}
     </pre>
    </div>
+   
+   
 
  
 

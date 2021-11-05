@@ -44,6 +44,16 @@ def show_ind():
     return render_template('ind.html')
 
 
+@app.route('/southafrica')
+def show_sa():
+
+    return render_template('sa.html')
+
+
+@app.route('/australia')
+def show_aus():
+
+    return render_template('aus.html')
 
 
 @app.route('/afghanistan',methods=['POST'])
@@ -111,6 +121,7 @@ def india():
     ind = NRR([151, 110, 210, 89], [20, 20, 20, 6.3], [152, 111, 144, 85], [17.83, 14.5, 20, 20])
     afg = NRR([190, 147, 160, 144], [20, 20, 20, 20], [60, 148, 98, 210], [20, 19, 20, 20])
     nz = NRR([134, 111, 172], [20, 14.5, 20], [135, 110, 156], [18.67, 20, 20])
+    
     input_data = [float(x) for x in request.form.values()]
     input_data[1] = convert(input_data[1])  
     ind.runs_scored.append(input_data[0])
@@ -128,8 +139,51 @@ def india():
 
     return render_template('ind.html', ind_nrr=ind_nrr)
 
+@app.route('/southafrica',methods=['POST'])
+def southafrica():
+    ind = NRR([151, 110, 210, 89], [20, 20, 20, 6.3], [152, 111, 144, 85], [17.83, 14.5, 20, 20])
+    afg = NRR([190, 147, 160, 144], [20, 20, 20, 20], [60, 148, 98, 210], [20, 19, 20, 20])
+    
+    sa = NRR([118, 144, 146, 86], [20, 18.33, 19.83, 13.5], [121, 143, 142, 84], [19.67, 20, 20, 20])
+    nz = NRR([134, 111, 172], [20, 14.5, 20], [135, 110, 156], [18.67, 20, 20])
+    input_data = [float(x) for x in request.form.values()]
+    input_data[1] = convert(input_data[1])  
+    sa.runs_scored.append(input_data[0])
+    sa.overs_faced.append(input_data[1])
+    sa.runs_given.append(input_data[2])
+    input_data[3] = convert(input_data[3])
+    sa.overs_bowled.append(input_data[3])
+
+    sa_for = sum(sa.runs_scored) / sum(sa.overs_faced) 
+    sa_aga = sum(sa.runs_given) / sum(sa.overs_bowled)
+
+    sa_nrr = sa_for - sa_aga
+
+    
+
+    return render_template('sa.html', sa_nrr=sa_nrr)
 
 
+@app.route('/australia',methods=['POST'])
+def australia():
+   
+    aus = NRR([121, 155, 125, 78, 125], [19.67, 17, 20, 6.34, 20], [118, 154, 126, 73, 210], [20, 20, 11.67, 20, 20])
+    input_data = [float(x) for x in request.form.values()]
+    input_data[1] = convert(input_data[1])  
+    aus.runs_scored.append(input_data[0])
+    aus.overs_faced.append(input_data[1])
+    aus.runs_given.append(input_data[2])
+    input_data[3] = convert(input_data[3])
+    aus.overs_bowled.append(input_data[3])
+
+    aus_for = sum(aus.runs_scored) / sum(aus.overs_faced) 
+    aus_aga = sum(aus.runs_given) / sum(aus.overs_bowled)
+
+    aus_nrr = aus_for - aus_aga
+
+    
+
+    return render_template('aus.html', aus_nrr=aus_nrr)
 
 
 
