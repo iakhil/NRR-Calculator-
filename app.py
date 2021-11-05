@@ -108,7 +108,7 @@ def newzealand():
 
 @app.route('/india',methods=['POST'])
 def india():
-    ind = NRR([151, 110, 210], [20, 20, 20], [152, 111, 144], [17.83, 14.5, 20])
+    ind = NRR([151, 110, 210, 89], [20, 20, 20, 6.3], [152, 111, 144, 85], [17.83, 14.5, 20, 20])
     afg = NRR([190, 147, 160, 144], [20, 20, 20, 20], [60, 148, 98, 210], [20, 19, 20, 20])
     nz = NRR([134, 111, 172], [20, 14.5, 20], [135, 110, 156], [18.67, 20, 20])
     input_data = [float(x) for x in request.form.values()]
@@ -119,13 +119,7 @@ def india():
     input_data[3] = convert(input_data[3])
     ind.overs_bowled.append(input_data[3])
     
-    input_data[5] = convert(input_data[5])
-    input_data[7] = convert(input_data[7])
-    
-    ind.runs_scored.append(input_data[4])
-    ind.overs_faced.append(input_data[5])
-    ind.runs_given.append(input_data[6])
-    ind.overs_bowled.append(input_data[7])
+   
 
     ind_for = sum(ind.runs_scored) / sum(ind.overs_faced) 
     ind_aga = sum(ind.runs_given) / sum(ind.overs_bowled)
